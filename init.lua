@@ -5,4 +5,4 @@ require("config.keymaps")
 -- 2. 加载插件管理器 (Lazy.nvim)
 require("config.lazy")
 
-vim.lsp.set_log_level("DEBUG")
+-- vim.lsp.set_log_level("DEBUG")
