@@ -1,6 +1,8 @@
 -- lua/config/options.lua
 local opt = vim.opt
 
+local env = require('utils.env')
+
 -- Dagerous no backup file
 opt.backup = false
 opt.writebackup = false
@@ -41,11 +43,11 @@ vim.cmd [[set iskeyword+=-]]
 vim.g.editorconfig = false
 
 -- 基础设置
-opt.number = true          -- 显示行号
-opt.relativenumber = true  -- 相对行号 (方便跳转)
-opt.scrolloff = 5          -- 光标上下保留8行
+opt.number = true             -- 显示行号
+opt.relativenumber = true     -- 相对行号 (方便跳转)
+opt.scrolloff = 5             -- 光标上下保留8行
 opt.sidescrolloff = 5
-opt.mouse = "a"            -- 允许鼠标操作
+opt.mouse = "a"               -- 允许鼠标操作
 opt.clipboard = "unnamedplus" -- 使用系统剪贴板
 
 -- 缩进 (默认 4 空格)
@@ -57,15 +59,15 @@ opt.autoindent = true
 opt.smartindent = true
 
 -- 搜索
-opt.ignorecase = true      -- 搜索忽略大小写
-opt.smartcase = true       -- 如果包含大写则不忽略
-opt.hlsearch = true        -- 高亮搜索结果
+opt.ignorecase = true -- 搜索忽略大小写
+opt.smartcase = true  -- 如果包含大写则不忽略
+opt.hlsearch = true   -- 高亮搜索结果
 
 -- 性能与外观
-opt.termguicolors = true   -- 开启真彩色
-opt.signcolumn = "yes"     -- 总是显示左侧符号列 (防止抖动)
-opt.updatetime = 250       -- 缩短更新时间 (提升 gitsigns 响应)
-opt.timeoutlen = 300       -- 缩短快捷键等待时间
+opt.termguicolors = true -- 开启真彩色
+opt.signcolumn = "yes"   -- 总是显示左侧符号列 (防止抖动)
+opt.updatetime = 250     -- 缩短更新时间 (提升 gitsigns 响应)
+opt.timeoutlen = 300     -- 缩短快捷键等待时间
 
 -- 设置 Leader 键为空格
 vim.g.mapleader = " "
@@ -96,3 +98,21 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     command = "call clearmatches()"
 })
 
+-- 将剪贴板内容通过 OSC 52 发送给终端 (iTerm2)
+if env.is_ssh then
+    local function paste()
+        return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+    end
+
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+            ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+        },
+        paste = {
+            ["+"] = paste,
+            ["*"] = paste,
+        },
+    }
+end

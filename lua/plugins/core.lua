@@ -96,7 +96,7 @@ return {
                     -- getbufinfo({buflisted=1}) 获取所有在列表中的 buffer (排除掉插件生成的临时 buffer)
                     local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
                     local is_last_buffer = #listed_buffers == 1 and
-                    listed_buffers[1].bufnr == vim.api.nvim_get_current_buf()
+                        listed_buffers[1].bufnr == vim.api.nvim_get_current_buf()
 
                     -- 3. 执行操作
                     if is_last_buffer then
@@ -122,16 +122,36 @@ return {
         version = false,
         opts = {
             mappings = {
-                add = '<leader>sa', -- Add surrounding in Normal and Visual modes
-                delete = '<leader>sd', -- Delete surrounding
-                replace = '<leader>sr', -- Replace surrounding
-                find = '<leader>sf', -- Find surrounding (to the right)
+                add = '<leader>sa',       -- Add surrounding in Normal and Visual modes
+                delete = '<leader>sd',    -- Delete surrounding
+                replace = '<leader>sr',   -- Replace surrounding
+                find = '<leader>sf',      -- Find surrounding (to the right)
                 find_left = '<leader>sF', -- Find surrounding (to the left)
                 highlight = '<leader>sh', -- Highlight surrounding
 
-                suffix_last = 'l', -- Suffix to search with "prev" method
-                suffix_next = 'n', -- Suffix to search with "next" method
+                suffix_last = 'l',        -- Suffix to search with "prev" method
+                suffix_next = 'n',        -- Suffix to search with "next" method
             },
         }
+    },
+
+    -- 7. nvim-tmux
+    {
+        "christoomey/vim-tmux-navigator",
+        cmd = {
+            "TmuxNavigateLeft",
+            "TmuxNavigateDown",
+            "TmuxNavigateUp",
+            "TmuxNavigateRight",
+            "TmuxNavigatePrevious",
+            "TmuxNavigatorProcessList",
+        },
+        keys = {
+            { "<c-h>",  "<cmd><C-U>TmuxNavigateLeft<cr>" },
+            { "<c-j>",  "<cmd><C-U>TmuxNavigateDown<cr>" },
+            { "<c-k>",  "<cmd><C-U>TmuxNavigateUp<cr>" },
+            { "<c-l>",  "<cmd><C-U>TmuxNavigateRight<cr>" },
+            { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+        },
     }
 }
