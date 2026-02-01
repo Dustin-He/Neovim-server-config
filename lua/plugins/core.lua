@@ -6,7 +6,7 @@ return {
         dependencies = { "nvim-tree/nvim-web-devicons" }, -- 如果终端支持图标
         opts = {
             view_options = {
-                show_hidden = true,
+                show_hidden = false,
             },
             float = {
                 padding = 2,
