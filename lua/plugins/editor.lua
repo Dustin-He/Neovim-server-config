@@ -201,6 +201,52 @@ return {
                             client.server_capabilities.hoverProvider = false
                         end
                     end,
+                },
+
+                -- 5. Cmake
+                cmake = {
+                    bin = "cmake-language-server",
+                },
+
+                -- 6. Bashls
+                bashls = {
+                    bin = "bash-language-server",
+                    filetypes = { "sh", "bash", "zsh" }, -- 明确支持的文件类型
+                    settings = {
+                        bashIde = {
+                            globPattern = "*@(.sh|.inc|.bash|.command)", -- 识别更多后缀
+                        },
+                    },
+                },
+
+                -- 7. Vimls
+                vimls = {
+                    bin = "vim-language-server",
+                    init_options = {
+                        isNeovim = true, -- 关键：告诉它这是 Neovim，避免误报
+                        diagnostic = {
+                            enable = true,
+                        },
+                        indexes = {
+                            runtimepath = true, -- 索引运行时路径，补全插件命令
+                            gap = 100,
+                            count = 3,
+                        },
+                    },
+                },
+
+                -- 8. Gopls
+                gopls = {
+                    analyses = {
+                        unusedparams = true,
+                        unusedvariable = true,
+                        fieldalignment = true,
+                        shadow = true,
+                    },
+                    usePlaceholders = true,
+                    staticcheck = true,
+                    gofumpt = true,
+
                 }
             }
 
