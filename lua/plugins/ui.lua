@@ -148,24 +148,24 @@ return {
 
                 -- 定义列的组成部分 (Segments)
                 segments = {
-                    -- 1. 最左侧：Git 变更标记 (Gitsigns) 和 诊断错误点 (Diagnostics)
-                    {
-                        text = {
-                            "%s",         -- 【暴力匹配】显示所有 Sign
-                        },
-                        click = "v:lua.ScSa",
-                    },
-
-                    -- 2. 最右侧：折叠图标 (就像 VSCode 的小箭头)
+                    -- 1. 最左侧：折叠图标 (就像 VSCode 的小箭头)
                     {
                         text = { builtin.foldfunc, "" }, -- 使用内置折叠图标
                         click = "v:lua.ScFa",            -- 点击折叠
                     },
 
-                    -- 3. 中间：行号
+                    -- 2. 中间：行号
                     {
                         text = { builtin.lnumfunc, " " }, -- 显示行号和一个空格
                         click = "v:lua.ScLa",             -- 点击行号可选中
+                    },
+
+                    -- 3. 最右侧：Git 变更标记 (Gitsigns) 和 诊断错误点 (Diagnostics)
+                    {
+                        text = {
+                            "%s",         -- 【暴力匹配】显示所有 Sign
+                        },
+                        click = "v:lua.ScSa",
                     },
                 },
             })
