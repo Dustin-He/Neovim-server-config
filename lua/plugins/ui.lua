@@ -156,18 +156,17 @@ return {
                         click = "v:lua.ScSa",
                     },
 
-                    -- 3. 中间：行号
-                    {
-                        text = { builtin.lnumfunc, " " }, -- 显示行号和一个空格
-                        click = "v:lua.ScLa",             -- 点击行号可选中
-                    },
-
                     -- 2. 最右侧：折叠图标 (就像 VSCode 的小箭头)
                     {
                         text = { builtin.foldfunc, "" }, -- 使用内置折叠图标
                         click = "v:lua.ScFa",            -- 点击折叠
                     },
 
+                    -- 3. 中间：行号
+                    {
+                        text = { builtin.lnumfunc, " " }, -- 显示行号和一个空格
+                        click = "v:lua.ScLa",             -- 点击行号可选中
+                    },
                 },
             })
         end,
