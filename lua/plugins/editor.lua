@@ -177,7 +177,7 @@ return {
                     bin = "pyright-langserver",
                     on_init = function(client)
                         -- 动态识别 venv/conda 路径
-                        local python_path = vim.fn.exepath("python")
+                        local python_path = vim.fn.exepath("python3")
                         if python_path and python_path ~= "" then
                             client.config.settings.python.pythonPath = python_path
                         end
@@ -200,6 +200,9 @@ return {
                         if client.server_capabilities then
                             client.server_capabilities.hoverProvider = false
                         end
+                    end,
+                    on_init = function(client)
+                        client.offset_encoding = "utf-16"
                     end,
                 },
 
