@@ -51,3 +51,5 @@ map("n", "<leader>p", ":bp<CR>", {desc = "Go to previous buffer"})
 
 -- 清除搜索高亮 (Esc)
 map("n", "<leader>hl", "<cmd>nohlsearch<cr>", { desc = "Clear highlights" })
+
+require('utils').set_loclist_keymap()

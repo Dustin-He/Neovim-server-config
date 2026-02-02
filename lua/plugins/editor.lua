@@ -114,7 +114,8 @@ return {
                     -- 2. 跳转报错
                     map("n", "[d", "<cmd>lua vim.diagnostic.jump({count=-1, float=true})<CR>", "Previous Diagnostic")
                     map("n", "]d", "<cmd>lua vim.diagnostic.jump({count=1, float=true})<CR>", "Next Diagnostic")
-                    map('n', '<space>q', vim.diagnostic.setloclist, "Diagnostic.setloclist")
+                    -- Moved to lua/config/keymap.lua
+                    -- map('n', '<space>q', vim.diagnostic.setloclist, "Diagnostic.setloclist")
 
                     -- 3. 核心跳转
                     map("n", "gd", vim.lsp.buf.definition, "Go to Definition")   -- 跳转定义
