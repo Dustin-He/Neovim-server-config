@@ -42,6 +42,14 @@ return {
                         syntax_limit_b = 1024 * 100, -- 100KB 以上文件不预览高亮
                     },
                 },
+                keymap = {
+                    fzf = {
+                        ["ctrl-d"] = "half-page-down",
+                        ["ctrl-u"] = "half-page-up",
+                        ["alt-G"] = "last",
+                        ["alt-g"] = "first",
+                    }
+                }
             })
         end
     },
